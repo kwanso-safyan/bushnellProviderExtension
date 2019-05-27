@@ -167,7 +167,7 @@ func safariViewController(_ controller: SFSafariViewController, didCompleteIniti
 
     if didLoadSuccessfully {
         //:- Delete sesison info
-        ssoVC.clearSSOSession()
+        ssoSDK.clearSSOSession()
 
         //:- Change the navigation to login screen.
 
