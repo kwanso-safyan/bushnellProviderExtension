@@ -13,14 +13,6 @@ import CommonCryptoModule
 
 public class SSOController: UIViewController, SFSafariViewControllerDelegate {
 
-//    init(target: UIViewController) {
-//        self.nextTarget = target
-//        super.init(nibName: nil, bundle: nil)
-//    }
-    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
     
     var mtarget: UIViewController?
     
@@ -59,11 +51,6 @@ public class SSOController: UIViewController, SFSafariViewControllerDelegate {
          **********/
         
         self.ssoAthuntication(target: self.mtarget!)
-        
-        //launchSafariTabWithPath(urlPath: "\(WEB_AUTH_BASE_URL)\(IOS_CLIENT_ID)\(WEB_AUTH_BASE_URL_SECOND)\(self.getEncryptedVerifierCode(IOS_CODE_VERIFIER))\(WEB_AUTH_BASE_URL_THIRD)")
-        
-        //        launchSafariTabWithCustomPath(urlPath: "\(WEB_AUTH_BASE_URL)\(IOS_CLIENT_ID)\(WEB_AUTH_BASE_URL_SECOND)\(self.getEncryptedVerifierCode(IOS_CODE_VERIFIER))\(WEB_AUTH_BASE_URL_THIRD)", viewController: self)
-        
     }
     
     public func setBackgroundGradient(view: AnyObject) {
@@ -89,8 +76,6 @@ public class SSOController: UIViewController, SFSafariViewControllerDelegate {
         
         self.mtarget = target
         
-        //self.codeVerifier = self.generateRandomString(size: 15)
-        
         //:- authentication url path e.g (client_url + client_id + remaining url path + encrypted code_verifier + code_challenge_method)
         
         CurrentUser.sharedInstance.configSSO?.iOSCodeVerifier = generateRandomString(size: 15)
@@ -102,11 +87,7 @@ public class SSOController: UIViewController, SFSafariViewControllerDelegate {
         
         let urlPath = "\(baseURL ?? "SSO_BASE_URL")\(WEB_AUTH_BASE_URL_ONE)\(iOSClientId ?? "IOS_CLIENT_ID")\(WEB_AUTH_BASE_URL_SECOND)\(self.getEncryptedVerifierCode(iOSCodeVerifier!))\(WEB_AUTH_BASE_URL_THIRD)"
         
-        //let code_verifier = "k2oYXKqiZrucvpgengXLeM1zKwsygOuURBK7b4-PB68"
-        //let urlPath = "\(WEB_AUTH_BASE_URL)\(IOS_CLIENT_ID)\(WEB_AUTH_BASE_URL_SECOND)\(code_verifier)\(WEB_AUTH_BASE_URL_THIRD)"
-        
-        
-        print(urlPath)
+        //print(urlPath)
         guard let url = URL(string: urlPath) else { return }
         
         let safariVC = SFSafariViewController(url: url)
@@ -123,16 +104,14 @@ public class SSOController: UIViewController, SFSafariViewControllerDelegate {
         
         if CurrentUser.sharedInstance.isLoggedIn! {
             
-            //:- Logout url path e.g (client_url + session/end)
+            //:- Logout url path e.g (client_url + session/end + post_logout_redirect_uri)
             
             let baseURL = CurrentUser.sharedInstance.configSSO?.ssoBaseUrl
             let iOSRedirectUrl = CurrentUser.sharedInstance.configSSO?.iOSRedirectUrl
             
             let urlPath = "\(baseURL ?? "SSO_BASE_URL")\("session/end?")\("post_logout_redirect_uri=")\(iOSRedirectUrl ?? "IOS_LOGOUT_REDIRECT_URL")\("?logout=true")\(ID_TOKEN_HINT)\((CurrentUser.sharedInstance.tokenObject?.id_token)!)"
             
-            //let urlPath = "\(baseURL ?? "SSO_BASE_URL")\("session/end?")"
-            
-            print(urlPath)
+            //print(urlPath)
             guard let url = URL(string: urlPath) else { return }
             
             let safariVC = SFSafariViewController(url: url)

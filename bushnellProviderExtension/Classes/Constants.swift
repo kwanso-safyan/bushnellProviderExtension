@@ -19,8 +19,6 @@ let USER_DEFAULTS = UserDefaults.standard
 let APPLICATION = UIApplication.shared
 let CURRENT_DEVICE = UIDevice.current
 
-// Color consts
-let CLEAR_COLOR = UIColor.clear
 
 // UserDefauld Keys
 let IS_USER_LOGGEDIN = "IS_USER_LOGGEDIN"
