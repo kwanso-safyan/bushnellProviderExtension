@@ -155,7 +155,7 @@ Add this code for logout button.
 ```
 
 
-## Logout Session Handler
+### Logout Session Handler Delegate method
 
 Add this method in viewcontroller where the logout button action exist to handle the logout sso session.
 
