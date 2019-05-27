@@ -128,7 +128,7 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplication.Op
 
 ## Logout SSO Session
 
-## Import Safari services
+### Import Safari services
 
 Import the SFSafariViewControllerDelegate in logout button's ViewController class.
 
@@ -216,6 +216,7 @@ ssoSDK.refreshAccessToken(success: { (success, response) in
     print(success)
 }) { (errorTag, message) in
     print(errorTag, message)
+    
     //:- Needs to clear Logout SSO session
     //:- Delete sesison info
     
@@ -236,7 +237,7 @@ let userObject = [
 ]
 
 ssoSDK.updateUserInfo(userObj: userObject as AnyObject) { (status, response) in
-    print(status, " -------- ", response)
+    print(status, " --- ", response)
 }
 
 ```
