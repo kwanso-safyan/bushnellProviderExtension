@@ -245,7 +245,7 @@ ssoSDK.updateUserInfo(userObj: userObject as AnyObject) { (status, response) in
 
 ## Requirements
 
-Xcode 10+, iOS10+
+Xcode 10+, iOS11+
 
 ## Author
 
