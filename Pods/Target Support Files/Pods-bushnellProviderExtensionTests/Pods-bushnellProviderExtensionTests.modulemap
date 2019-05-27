@@ -1,0 +1,6 @@
+framework module Pods_bushnellProviderExtensionTests {
+  umbrella header "Pods-bushnellProviderExtensionTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

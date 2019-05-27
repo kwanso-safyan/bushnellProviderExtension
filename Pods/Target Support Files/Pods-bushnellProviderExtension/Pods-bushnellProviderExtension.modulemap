@@ -1,0 +1,6 @@
+framework module Pods_bushnellProviderExtension {
+  umbrella header "Pods-bushnellProviderExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}
