@@ -1,14 +1,15 @@
-# Bushnell-sso-SDK 1.0
+# Bushnell Provider Extension 1.0
 
 Simple and lightweight library to athunticate user from sso dedicated API.
 
 # Installation
 
-1. Make sure you have access to repo <https://github.com/kwanso-safyan/TestSDK> 
-2. Add the following line to your Podfile:
+1. Make sure you have access to repo <https://github.com/kwanso-safyan/bushnellProviderExtension>
+2. Clone the code in same level of directory.
+3. Add the following line to your Podfile:
 
 ```ruby
-pod 'TestSDK', :path => "../TestSDK"
+pod 'bushnellProviderExtension', :path => "../bushnellProviderExtension"
 ```
 
 3. Run from project main folder: 
@@ -24,7 +25,7 @@ pod install
 **Swift:**
 
 ```swift
-import TestSDK
+import bushnellProviderExtension
 ```
 
 ## Initialize
@@ -43,7 +44,7 @@ Calling this method right after app finished launching is crucial to get the lon
 
 ```swift
 
-ssoVC.setupConfiguration(
+ssoSDK.setupConfiguration(
     ssoBaseUrl: "https://oidc-provider-bushnell-stage.herokuapp.com/",
     iOSClientId: "3F0PNxW8mFcLesCUUdnW",
     iOSClientSecret: "4gLTweFk8Rlljj0pMze1CLNFyzHg7v",
@@ -83,7 +84,7 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplication.Op
                 if response.contains("code=") {
 
                     let responseArr = url.query?.components(separatedBy: "code=")
-                    ssoVC.callSSOTokenApiWithCodeCompletion(code: (responseArr?[1])!, target: (AppDel.window?.rootViewController)!) { status in
+                    ssoSDK.callSSOTokenApiWithCodeCompletion(code: (responseArr?[1])!, target: (AppDel.window?.rootViewController)!) { status in
                         if status! {
                             print("Login Successfully")
                         } else {
@@ -95,13 +96,13 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplication.Op
                 } else if response.contains("error=") {
                     // dismiss the auth tab in error case
 
-                    ssoVC.dismissAuthTab(target: (AppDel.window?.rootViewController)!)
+                    ssoSDK.dismissAuthTab(target: (AppDel.window?.rootViewController)!)
                     return false
                 } else {
                     return false
                 }
             } else if url.query == nil {
-                ssoVC.reloadSafariTab(target: (AppDel.window?.rootViewController)!)
+                ssoSDK.reloadSafariTab(target: (AppDel.window?.rootViewController)!)
                 return true
             }
         }
@@ -133,23 +134,26 @@ Use these lines of code in case of introspection access token .
 **Swift:**
 
 ```swift
-ssoVC.introspectionAccessToken { (response) in
+ssoSDK.checkAccessToken { (response) in
     print(response)
 }
 ```
 
-## Check Refresh token
+## Refresh Access Token
 
 Use these lines of code in case of invalidate refresh token .
 
 **Swift:**
 
 ```swift
-ssoVC.checkRefreshToken(success: { (success, response) in
+ssoSDK.refreshAccessToken(success: { (success, response) in
     print(success)
 }) { (errorTag, message) in
     print(errorTag, message)
-    //:- Logout SSO session
+    //:- Needs to clear Logout SSO session
+    //:- Delete sesison info
+    
+    ssoSDK.clearSSOSession()
 }
 ```
 
