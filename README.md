@@ -45,10 +45,10 @@ Calling this method right after app finished launching is crucial to get the lon
 ```swift
 
 ssoSDK.setupConfiguration(
-    ssoBaseUrl: "https://oidc-provider-bushnell-stage.herokuapp.com/",
-    iOSClientId: "3F0PNxW8mFcLesCUUdnW",
-    iOSClientSecret: "4gLTweFk8Rlljj0pMze1CLNFyzHg7v",
-    bushnellBaseUrl: "https://bushnell-resource-server-stage.herokuapp.com/",
+    ssoBaseUrl: "PROVIDER_BASE_URL",
+    iOSClientId: "CLIENT_ID",
+    iOSClientSecret: "CLIENT_SECRET",
+    bushnellBaseUrl: "RESOURCE_SERVER_BASE_URL",
     iOSRedirectUrl: "com.ios.bushnellsso://"
 )
 
@@ -67,6 +67,20 @@ ssoSDK.validateSsoLoginStatus { login in
     }
 }
 ```
+
+## Login Athuntication
+
+Add this code in login button action.
+
+**Swift:**
+
+```swift
+@IBAction func onLoginPress(_ sender: Any) {
+
+    ssoSDK.ssoAthuntication(target: self)
+}
+```
+
 
 ## Login Auth Handler (AppDelegate)
 
@@ -108,6 +122,58 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplication.Op
         }
     }
     return false
+}
+
+```
+
+## Logout SSO Session
+
+## Import Safari services
+
+Import the SFSafariViewControllerDelegate in logout button's ViewController class.
+
+**Swift:**
+
+```swift
+import SafariServices
+```
+
+```swift
+class ViewController: UIViewController, SFSafariViewControllerDelegate {
+}
+```
+
+Add this code for logout button.
+
+**Swift:**
+
+```swift
+@IBAction func onLogoutPress(_ sender: Any) {
+
+    ssoSDK.logoutSSOAuthentication(target: self)
+}
+```
+
+
+## Logout Session Handler
+
+Add this method in viewcontroller where the logout button action exist to handle the logout sso session.
+
+**Swift:**
+
+```swift
+
+func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
+
+    if didLoadSuccessfully {
+        //:- Delete sesison info
+        ssoVC.clearSSOSession()
+
+        //:- Change the navigation to login screen.
+
+    }
+
+    self.dismiss(animated: true, completion: nil)
 }
 
 ```
