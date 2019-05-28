@@ -1,18 +1,15 @@
-# Bushnell Provider Extension 1.0
+# Bushnell iOS Framework Documentation (Provider)
 
-Simple and lightweight library to athunticate user from sso dedicated API.
+Simple and lightweight library to athunticate user from SSO dedicated API.
 
 # Installation
 
-1. Make sure you have access to repo <https://github.com/kwanso-safyan/bushnellProviderExtension>
-2. Clone the code in same level of directory.
-3. Add the following line to your Podfile:
+ Add the following line to your Podfile:
 
 ```ruby
 pod 'bushnellProviderExtension', :path => "../bushnellProviderExtension"
 ```
-
-3. Run from project main folder: 
+ Run on terminal : 
 
 ```bash
 pod install
@@ -49,12 +46,12 @@ ssoSDK.setupConfiguration(
     iOSClientId: "CLIENT_ID",
     iOSClientSecret: "CLIENT_SECRET",
     bushnellBaseUrl: "RESOURCE_SERVER_BASE_URL",
-    iOSRedirectUrl: "com.ios.bushnellsso://"
+    iOSRedirectUrl: "com.ios.bushnellsso://" --EXAMPLE APP URL--
 )
 
 ```
 
-## Check for sso login session in did finish launching (AppDelegate)
+## Check for SSO login session in did finish launching (AppDelegate)
 
 Call this method in did finish launching for checking user is logged in or not for selecting initial navigation.
 
@@ -181,7 +178,7 @@ func safariViewController(_ controller: SFSafariViewController, didCompleteIniti
 
 ## Check session expiry
 
-Add this code in the home screen's  viewWillAppear method and .
+Add this code in the home screen's  viewWillAppear method
 
 **Swift:**
 
@@ -193,9 +190,9 @@ ssoSDK.checkSessionExpiryStatus { (isExpire) in
 }
 ```
 
-## Introspection Access Token
+## Check Access Token
 
-Use these lines of code in case of introspection access token .
+Use these lines of code if you want to check for access token
 
 **Swift:**
 
@@ -205,9 +202,9 @@ ssoSDK.checkAccessToken { (response) in
 }
 ```
 
-## Refresh Access Token
+## Refresh Access Token On Demand
 
-Use these lines of code in case of invalidate refresh token .
+Use these lines of code to refresh access token
 
 **Swift:**
 
@@ -224,16 +221,16 @@ ssoSDK.refreshAccessToken(success: { (success, response) in
 }
 ```
 
-## Update sso user information
+## Update User Profile
 
-Add this code in the home screen's  viewWillAppear method and .
+Add this code in the home screen's viewWillAppear method
 
 **Swift:**
 
 ```swift
 let userObject = [
-"first_name": "Safyan",
-"last_name": "Jamil"
+"first_name": "John",
+"last_name": "Doe"
 ]
 
 ssoSDK.updateUserInfo(userObj: userObject as AnyObject) { (status, response) in
@@ -247,10 +244,3 @@ ssoSDK.updateUserInfo(userObj: userObject as AnyObject) { (status, response) in
 
 Xcode 10+, iOS11+
 
-## Author
-
-Kwanso Developer <safyan.jamil@kwanso.com>
-
-## License
-
-BushnellSSO-SDK is internal library and not subject to any license.
