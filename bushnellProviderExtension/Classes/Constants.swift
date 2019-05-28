@@ -33,6 +33,6 @@ let KEEP_ALIVE = ""
 
 
 let WEB_AUTH_BASE_URL_ONE = "auth?client_id="
-let WEB_AUTH_BASE_URL_SECOND = "&response_type=code&scope=openid+profile+offline_access&prompt=consent&code_challenge="
+let WEB_AUTH_BASE_URL_SECOND = "&response_type=code&scope=openid+profile+offline_access+profile:edit&prompt=consent&code_challenge="
 let WEB_AUTH_BASE_URL_THIRD = "&code_challenge_method=S256"
 let ID_TOKEN_HINT = "&id_token_hint="
