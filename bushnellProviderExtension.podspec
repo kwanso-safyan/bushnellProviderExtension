@@ -9,7 +9,7 @@ s.author       = { "Safyan Jamil" => "safyan.jamil@kwanso.com" }
 s.platform     = :ios, "11.0"
 s.homepage      = "https://github.com/kwanso-safyan/bushnellProviderExtension"
 s.source       = { :git => "https://github.com/kwanso-safyan/bushnellProviderExtension.git", :tag => "1.0.0" }
-s.source_files  = "bushnellProviderExtension/**/*.{h,m,swift,xib,xcdatamodeld,png,jpeg,jpg,Assets.xcassets,imageset}"
+s.source_files  = "bushnellProviderExtension/**/*.{h,m,swift,xcdatamodeld}"
 
 #s.framework  = "Alamofire"
 s.frameworks = "Alamofire", "CommonCryptoModule"

@@ -12,7 +12,6 @@ pod 'CommonCryptoModule'
 pod 'SwiftyJSON'
 pod 'ReachabilitySwift'
 pod 'MBProgressHUD'
-pod 'IQKeyboardManagerSwift'
 
 
   target 'bushnellProviderExtensionTests' do

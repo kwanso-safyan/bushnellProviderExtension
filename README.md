@@ -104,6 +104,12 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplication.Op
                     }
 
                     return true
+                } else if response.contains("logout=true") {
+                    //:- Delete sesison info
+                    ssoSDK.clearSSOSession()
+
+                    //:- Load the login screen.
+
                 } else if response.contains("error=") {
                     // dismiss the auth tab in error case
 
@@ -133,6 +139,7 @@ Import the SFSafariViewControllerDelegate in logout button's ViewController clas
 
 ```swift
 import SafariServices
+import bushnellProviderExtension
 ```
 
 ```swift
@@ -162,19 +169,22 @@ Add this method in viewcontroller where the logout button action exist to handle
 
 func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
 
-    if didLoadSuccessfully {
-        //:- Delete sesison info
-        ssoSDK.clearSSOSession()
-
-        //:- Change the navigation to login screen.
-
-    }
-
     self.dismiss(animated: true, completion: nil)
 }
 
 ```
 
+## Get User Object
+
+Use these lines of code if you want to get legged-in user info
+
+**Swift:**
+
+```swift
+ssoSDK.getUserInfo { (userObject) in
+    print(userObject)
+}
+```
 
 ## Check session expiry
 
@@ -201,6 +211,19 @@ ssoSDK.checkAccessToken { (response) in
     print(response)
 }
 ```
+
+## Get Access Token Object
+
+Use these lines of code if you want to get access token object
+
+**Swift:**
+
+```swift
+ssoSDK.getTokenInfo { (tokenObject) in
+    print(tokenObject)
+}
+```
+
 
 ## Refresh Access Token On Demand
 

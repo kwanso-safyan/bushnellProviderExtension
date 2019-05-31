@@ -123,6 +123,52 @@ public class SSOController: UIViewController, SFSafariViewControllerDelegate {
         
     }
     
+    public func getTokenInfo(_ completion: @escaping (AnyObject) -> Void) {
+        
+        if CurrentUser.sharedInstance.isLoggedIn! {
+            /**********
+             //:- Load access token info from the local storage.
+             **********/
+            
+            let tokenObject = CurrentUser.sharedInstance.tokenObject!
+            let newTokenObj = [
+                "access_token": tokenObject.access_token,
+                "expires_in": tokenObject.expires_in,
+                "id_token": tokenObject.id_token,
+                "scope": tokenObject.scope,
+                "token_type": tokenObject.token_type,
+                "refresh_token": tokenObject.refresh_token,
+                ] as [String : Any]
+            
+            completion(newTokenObj as AnyObject)
+        } else {
+            completion(false as AnyObject)
+        }
+    }
+    
+    public func getUserInfo(_ completion: @escaping (AnyObject) -> Void) {
+        
+        if CurrentUser.sharedInstance.isLoggedIn! {
+            /**********
+             //:- Load user info from the local storage.
+             **********/
+            
+            let userObject = CurrentUser.sharedInstance.user!
+            
+            let newUserObj = [
+                "id": userObject.id,
+                "email": userObject.email,
+                "firstname": userObject.firstname,
+                "lastname": userObject.lastname,
+                "fullname": userObject.fullname,
+                "emailVerified": userObject.emailVerified,
+                ] as [String : Any]
+            
+            completion(newUserObj as AnyObject)
+        } else {
+            completion(false as AnyObject)
+        }
+    }
     
     public func validateSsoLoginStatus(_ completion: @escaping (Bool) -> Void) {
         

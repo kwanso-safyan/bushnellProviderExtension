@@ -24,8 +24,6 @@
 		B8C3D1AC229BD436009A8B59 /* SSOController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C3D1A8229BD436009A8B59 /* SSOController.swift */; };
 		B8C3D1AD229BD436009A8B59 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C3D1A9229BD436009A8B59 /* Constants.swift */; };
 		B8C3D1AF229BD436009A8B59 /* BushnellAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C3D1AB229BD436009A8B59 /* BushnellAPI.swift */; };
-		B8C3D1BA229D3202009A8B59 /* SSOView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8C3D1B8229D3202009A8B59 /* SSOView.xib */; };
-		B8C3D1BB229D3202009A8B59 /* SSOView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C3D1B9229D3202009A8B59 /* SSOView.swift */; };
 		B8C3D1BD229D3256009A8B59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8C3D1BC229D3256009A8B59 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -62,8 +60,6 @@
 		B8C3D1A8229BD436009A8B59 /* SSOController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSOController.swift; sourceTree = "<group>"; };
 		B8C3D1A9229BD436009A8B59 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B8C3D1AB229BD436009A8B59 /* BushnellAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BushnellAPI.swift; sourceTree = "<group>"; };
-		B8C3D1B8229D3202009A8B59 /* SSOView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSOView.xib; sourceTree = "<group>"; };
-		B8C3D1B9229D3202009A8B59 /* SSOView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSOView.swift; sourceTree = "<group>"; };
 		B8C3D1BC229D3256009A8B59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C49599DEB23C19DC0C3E5D57 /* Pods-bushnellProviderExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bushnellProviderExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bushnellProviderExtension/Pods-bushnellProviderExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		D632657098C4C23E5D2DB923 /* Pods-bushnellProviderExtensionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bushnellProviderExtensionTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-bushnellProviderExtensionTests/Pods-bushnellProviderExtensionTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -181,8 +177,6 @@
 				B8C3D1AB229BD436009A8B59 /* BushnellAPI.swift */,
 				B8C3D1A8229BD436009A8B59 /* SSOController.swift */,
 				B8C3D174229BD366009A8B59 /* bushnellProviderExtension.h */,
-				B8C3D1B9229D3202009A8B59 /* SSOView.swift */,
-				B8C3D1B8229D3202009A8B59 /* SSOView.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -282,7 +276,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8C3D1BD229D3256009A8B59 /* Assets.xcassets in Resources */,
-				B8C3D1BA229D3202009A8B59 /* SSOView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,7 +316,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-bushnellProviderExtensionTests/Pods-bushnellProviderExtensionTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CommonCryptoModule/CommonCryptoModule.framework",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -332,7 +324,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CommonCryptoModule.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -370,7 +361,6 @@
 				B8C3D1A2229BD41C009A8B59 /* CurrentUser.swift in Sources */,
 				B8C3D1AF229BD436009A8B59 /* BushnellAPI.swift in Sources */,
 				B8C3D1AD229BD436009A8B59 /* Constants.swift in Sources */,
-				B8C3D1BB229D3202009A8B59 /* SSOView.swift in Sources */,
 				B8C3D199229BD3E6009A8B59 /* UIViewController+Extension.swift in Sources */,
 				B8C3D1A4229BD41C009A8B59 /* TokenModel.swift in Sources */,
 				B8C3D1A6229BD41C009A8B59 /* Configuration.swift in Sources */,
