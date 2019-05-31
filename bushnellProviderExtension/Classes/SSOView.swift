@@ -26,7 +26,7 @@ public class SSOView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-//        commonInit()
+        commonInit()
     }
     
     public func setViewController(viewController: UIViewController) {
@@ -37,9 +37,9 @@ public class SSOView: UIView {
     func commonInit()
     {
 //        let view = Bundle.main.loadNibNamed("SSOView", owner: self, options: nil)
-        let bundleIdentifier = "com.kwanso.bushnellProviderExtension"
-        let bundle = Bundle(identifier: bundleIdentifier)
-        let myView = bundle?.loadNibNamed("SSOView", owner: nil, options: nil)?.first as! UIView
+        //let bundleIdentifier = "com.kwanso.bushnellProviderExtension"
+        //let bundle = Bundle(identifier: bundleIdentifier)
+        //let myView = bundle?.loadNibNamed("SSOView", owner: nil, options: nil)?.first as! UIView
         
         //Bundle.main.loadNibNamed("SSOView", owner: self, options: nil)
 
