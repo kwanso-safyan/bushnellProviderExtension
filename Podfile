@@ -10,7 +10,6 @@ target 'bushnellProviderExtension' do
 pod 'Alamofire'
 pod 'CommonCryptoModule'
 pod 'SwiftyJSON'
-pod 'ReachabilitySwift'
 pod 'MBProgressHUD'
 
 

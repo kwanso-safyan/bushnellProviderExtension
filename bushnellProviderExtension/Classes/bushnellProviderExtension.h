@@ -15,6 +15,3 @@ FOUNDATION_EXPORT double bushnellProviderExtensionVersionNumber;
 FOUNDATION_EXPORT const unsigned char bushnellProviderExtensionVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <bushnellProviderExtension/PublicHeader.h>
-
-
-@class SSOView;
