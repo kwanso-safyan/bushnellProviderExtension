@@ -25,9 +25,9 @@ public class SSOController: UIViewController, SFSafariViewControllerDelegate {
     public func registerNotification() {
     }
  
-    public func setupConfiguration(ssoBaseUrl: String, iOSClientId: String, iOSClientSecret: String, bushnellBaseUrl: String, iOSRedirectUrl: String) {
+    public func setupConfiguration(ssoBaseUrl: String, iOSClientId: String, iOSClientSecret: String, bushnellBaseUrl: String, iOSRedirectUrl: String, scopeEditProfile: String, scopeLicense: String) {
         
-        CurrentUser.sharedInstance.loadSsoConfigurations(ssoBaseUrl, iOSClientId, iOSClientSecret, bushnellBaseUrl, iOSRedirectUrl)
+        CurrentUser.sharedInstance.loadSsoConfigurations(ssoBaseUrl, iOSClientId, iOSClientSecret, bushnellBaseUrl, iOSRedirectUrl, scopeEditProfile, scopeLicense)
     }
     
     // MARK: - Notification Handler Method
@@ -84,10 +84,15 @@ public class SSOController: UIViewController, SFSafariViewControllerDelegate {
         let iOSClientId = CurrentUser.sharedInstance.configSSO?.iOSClientId
         let iOSCodeVerifier = CurrentUser.sharedInstance.configSSO?.iOSCodeVerifier
         
+        let scopeEditProfile = CurrentUser.sharedInstance.configSSO?.scopeEditProfile
+        let scopeLicense = CurrentUser.sharedInstance.configSSO?.scopeLicense
         
-        let urlPath = "\(baseURL ?? "SSO_BASE_URL")\(WEB_AUTH_BASE_URL_ONE)\(iOSClientId ?? "IOS_CLIENT_ID")\(WEB_AUTH_BASE_URL_SECOND)\(self.getEncryptedVerifierCode(iOSCodeVerifier!))\(WEB_AUTH_BASE_URL_THIRD)"
+        var thirdPath = scopeEditProfile!.count > 0 ? "\(WEB_AUTH_BASE_URL_THIRD)+\(scopeEditProfile ?? "profile:edit")" : WEB_AUTH_BASE_URL_THIRD
+        thirdPath = scopeLicense!.count > 0 ? "\(thirdPath)+\(scopeLicense ?? "license")" : thirdPath
         
-        //print(urlPath)
+        let urlPath = "\(baseURL ?? "SSO_BASE_URL")\(WEB_AUTH_BASE_URL_ONE)\(iOSClientId ?? "IOS_CLIENT_ID")\(WEB_AUTH_BASE_URL_SECOND)\(self.getEncryptedVerifierCode(iOSCodeVerifier!))\(thirdPath)\(WEB_AUTH_BASE_URL_FOURTH)"
+        
+        print(urlPath)
         guard let url = URL(string: urlPath) else { return }
         
         let safariVC = SFSafariViewController(url: url)
@@ -308,6 +313,19 @@ public class SSOController: UIViewController, SFSafariViewControllerDelegate {
             BushnellAPI.sharedInstance.updateProfileApi(updateObj: userObj) { (success, response) -> Void in
                 completion(success,  response as AnyObject)
             }
+        }
+    }
+    
+    
+    public func logLicenseInfo(deviceId: String, licenseType: String, licenseNo: String, completion: @escaping (Bool, NSDictionary) -> Void) {
+        
+        if CurrentUser.sharedInstance.isLoggedIn! {
+            
+            //:- Call License-Log info API
+            BushnellAPI.sharedInstance.logLicenseApi(deviceId, licenseType, licenseNo) { (success, response) -> Void in
+                completion(success,  response!)
+            }
+            
         }
     }
     

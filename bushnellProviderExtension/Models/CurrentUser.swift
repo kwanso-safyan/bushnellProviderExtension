@@ -142,9 +142,9 @@ class CurrentUser {
     }
     
     
-    func loadSsoConfigurations(_ ssoBaseUrl: String, _ iOSClientId: String, _ iOSClientSecret: String, _ bushnellBaseUrl: String, _ iOSRedirectUrl: String) {
+    func loadSsoConfigurations(_ ssoBaseUrl: String, _ iOSClientId: String, _ iOSClientSecret: String, _ bushnellBaseUrl: String, _ iOSRedirectUrl: String, _ scopeEditProfile: String, _ scopeLicense: String) {
         
-        self.configSSO = Configuration(ssoBaseUrl: ssoBaseUrl, iOSClientId: iOSClientId, iOSClientSecret: iOSClientSecret, bushnellBaseUrl: bushnellBaseUrl, iOSRedirectUrl: iOSRedirectUrl)
+        self.configSSO = Configuration(ssoBaseUrl: ssoBaseUrl, iOSClientId: iOSClientId, iOSClientSecret: iOSClientSecret, bushnellBaseUrl: bushnellBaseUrl, iOSRedirectUrl: iOSRedirectUrl, scopeEditProfile: scopeEditProfile, scopeLicense: scopeLicense)
     }
     
 }

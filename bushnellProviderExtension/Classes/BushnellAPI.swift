@@ -347,5 +347,66 @@ class BushnellAPI {
         }
     }
     
+    func logLicenseApi(
+        _ deviceId: String, _ licenseType: String, _ licenseNo: String,
+        handler: @escaping (_ success: Bool, _ response: NSDictionary?) -> Void
+        )
+    {
+        let baseURL = CurrentUser.sharedInstance.configSSO?.bushnellBaseUrl
+        
+        let requestString: NSString = "\(baseURL ?? "SSO_BASE_URL")\(LICENSE_LOG)" as NSString
+        
+        let url: NSURL = NSURL(string: requestString as String)!
+        
+        var request = URLRequest(url: url as URL)
+        request.httpMethod = "POST"
+        request.setValue(Strings.CONTENT_TYPE_URL_ENCODED, forHTTPHeaderField: Strings.CONTENT_TYPE)
+        request.setValue(self.authorizationCustomHeader(), forHTTPHeaderField: Strings.AUTHORIZATION)
+        
+        
+        let data : Data = "device_id=\(deviceId)&license_type=\(licenseType)&license_no=\(licenseNo)&token=\(CurrentUser.sharedInstance.tokenObject!.access_token)".data(using: .utf8)!
+        
+        request.httpBody = data
+        
+        self.alamoFireManager!.request(request).responseJSON { response in
+            
+            switch response.result {
+            case .failure(let error):
+                print(error)
+                
+                if let data = response.data, let responseString = String(data: data, encoding: String.Encoding.utf8) {
+                    print(responseString)
+                }
+            case .success(let responseObject):
+                print(responseObject)
+            }
+            
+            print("Request: \(response.request!)")
+            
+            let success = response.result.isSuccess && (response.response?.statusCode == 200)
+            print(success ? "SUCCESS" : "FAILURE")
+            
+            let result = response.result.value as? NSDictionary
+            
+            if (success)
+            {
+                if (result != nil) {
+                    
+                    handler(true, result)
+                } else{
+                    handler(false, result)
+                }
+            }
+            else
+            {
+                if (result != nil) {
+                    handler(false, result)
+                } else{
+                    handler(false, nil)
+                }
+            }
+        }
+    }
+    
     
 }

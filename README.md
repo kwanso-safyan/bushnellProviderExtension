@@ -2,18 +2,54 @@
 
 Simple and lightweight library to athunticate user from SSO dedicated API.
 
-# Installation
+# Pod setup in existing Project
 
- Add the following line to your Podfile:
+ Open the project in Terminal and enter this command for Create a Podfile
+
+```bash
+pod init
+```
+
+## Installation
+
+ Open the Podfile and add the following line to your Podfile for installing dependencies:
 
 ```ruby
 pod 'bushnellProviderExtension', :path => "../bushnellProviderExtension"
 ```
- Run on terminal : 
+
+Here is the example Podfile code just for help
+```
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'ExampleApp' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for ExampleApp
+    pod 'bushnellProviderExtension', :path => "../bushnellProviderExtension"
+
+  target 'ExampleAppTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'ExampleAppUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+```
+
+ Save the Podfile and run this command on the terminal : 
 
 ```bash
 pod install
 ```
+
+After installing the pods make sure that you open the project in xcode from **.xcworkspace** extension rather than **.xcodeproj**
 
 # Usage
 
