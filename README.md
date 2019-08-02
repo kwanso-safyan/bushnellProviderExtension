@@ -83,8 +83,8 @@ ssoSDK.setupConfiguration(
     iOSClientSecret: "CLIENT_SECRET",
     bushnellBaseUrl: "RESOURCE_SERVER_BASE_URL",
     iOSRedirectUrl: "com.ios.bushnellsso://", --EXAMPLE APP URL--
-    scopeEditProfile: "profile:edit",
-    scopeLicense: "license"
+    scopeEditProfile: true, // set true if you want the ability to edit profile else false
+    scopeLicense: true // set true if you want the ability to log license information else false
 )
 
 ```
@@ -307,8 +307,13 @@ Use this code snippets for log license information.
 **Swift:**
 
 ```swift
+let licenseObj = [
+    "device_id": "12345",
+    "license_type": "test",
+    "license_no": "1234"
+]
 
-ssoSDK.logLicenseInfo(deviceId: "", licenseType: "", licenseNo: "") { (success, response) in
+ssoSDK.logLicenseInfo(licenseObj: licenseObj as AnyObject) { (success, response) in
     if success {
         // Your License info logged successfully.
     } else {
