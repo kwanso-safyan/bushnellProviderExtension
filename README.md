@@ -298,6 +298,25 @@ ssoSDK.updateUserInfo(userObj: userObject as AnyObject) { (status, response) in
 
 ```
 
+## Submit License Log
+
+Use this code snippets for log license information.
+
+**Swift:**
+
+```swift
+
+ssoSDK.logLicenseInfo(deviceId: "", licenseType: "", licenseNo: "") { (success, response) in
+    if success {
+        // Your License info logged successfully.
+    } else {
+    	// Parse this error message
+    	print(response["error_description"] as! String)
+    }
+}
+
+```
+
 
 ## Requirements
 
