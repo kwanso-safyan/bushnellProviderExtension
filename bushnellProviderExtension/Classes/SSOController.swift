@@ -87,8 +87,8 @@ public class SSOController: UIViewController, SFSafariViewControllerDelegate {
         let scopeEditProfile = CurrentUser.sharedInstance.configSSO?.scopeEditProfile
         let scopeLicense = CurrentUser.sharedInstance.configSSO?.scopeLicense
         
-        var thirdPath = scopeEditProfile == true ? "\(WEB_AUTH_BASE_URL_THIRD)+profile:edit)" : WEB_AUTH_BASE_URL_THIRD
-        thirdPath = scopeLicense == true ? "\(thirdPath)+license)" : thirdPath
+        var thirdPath = scopeEditProfile == true ? "\(WEB_AUTH_BASE_URL_THIRD)+profile:edit" : WEB_AUTH_BASE_URL_THIRD
+        thirdPath = scopeLicense == true ? "\(thirdPath)+license" : thirdPath
         
         let urlPath = "\(baseURL ?? "SSO_BASE_URL")\(WEB_AUTH_BASE_URL_ONE)\(iOSClientId ?? "IOS_CLIENT_ID")\(WEB_AUTH_BASE_URL_SECOND)\(self.getEncryptedVerifierCode(iOSCodeVerifier!))\(thirdPath)\(WEB_AUTH_BASE_URL_FOURTH)"
         
