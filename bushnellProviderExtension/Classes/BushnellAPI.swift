@@ -348,7 +348,7 @@ class BushnellAPI {
     }
     
     func logLicenseApi(
-        _ deviceId: String, _ licenseType: String, _ licenseNo: String,
+        licenseObj: AnyObject,
         handler: @escaping (_ success: Bool, _ response: NSDictionary?) -> Void
         )
     {
@@ -363,6 +363,9 @@ class BushnellAPI {
         request.setValue(Strings.CONTENT_TYPE_URL_ENCODED, forHTTPHeaderField: Strings.CONTENT_TYPE)
         request.setValue(self.authorizationCustomHeader(), forHTTPHeaderField: Strings.AUTHORIZATION)
         
+        let deviceId = licenseObj["device_id"] as! String
+        let licenseType = licenseObj["license_type"] as! String
+        let licenseNo = licenseObj["license_no"] as! String
         
         let data : Data = "device_id=\(deviceId)&license_type=\(licenseType)&license_no=\(licenseNo)&token=\(CurrentUser.sharedInstance.tokenObject!.access_token)".data(using: .utf8)!
         

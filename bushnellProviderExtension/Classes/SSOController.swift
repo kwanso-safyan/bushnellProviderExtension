@@ -25,7 +25,7 @@ public class SSOController: UIViewController, SFSafariViewControllerDelegate {
     public func registerNotification() {
     }
  
-    public func setupConfiguration(ssoBaseUrl: String, iOSClientId: String, iOSClientSecret: String, bushnellBaseUrl: String, iOSRedirectUrl: String, scopeEditProfile: String, scopeLicense: String) {
+    public func setupConfiguration(ssoBaseUrl: String, iOSClientId: String, iOSClientSecret: String, bushnellBaseUrl: String, iOSRedirectUrl: String, scopeEditProfile: Bool, scopeLicense: Bool) {
         
         CurrentUser.sharedInstance.loadSsoConfigurations(ssoBaseUrl, iOSClientId, iOSClientSecret, bushnellBaseUrl, iOSRedirectUrl, scopeEditProfile, scopeLicense)
     }
@@ -87,8 +87,8 @@ public class SSOController: UIViewController, SFSafariViewControllerDelegate {
         let scopeEditProfile = CurrentUser.sharedInstance.configSSO?.scopeEditProfile
         let scopeLicense = CurrentUser.sharedInstance.configSSO?.scopeLicense
         
-        var thirdPath = scopeEditProfile!.count > 0 ? "\(WEB_AUTH_BASE_URL_THIRD)+\(scopeEditProfile ?? "profile:edit")" : WEB_AUTH_BASE_URL_THIRD
-        thirdPath = scopeLicense!.count > 0 ? "\(thirdPath)+\(scopeLicense ?? "license")" : thirdPath
+        var thirdPath = scopeEditProfile == true ? "\(WEB_AUTH_BASE_URL_THIRD)+profile:edit)" : WEB_AUTH_BASE_URL_THIRD
+        thirdPath = scopeLicense == true ? "\(thirdPath)+license)" : thirdPath
         
         let urlPath = "\(baseURL ?? "SSO_BASE_URL")\(WEB_AUTH_BASE_URL_ONE)\(iOSClientId ?? "IOS_CLIENT_ID")\(WEB_AUTH_BASE_URL_SECOND)\(self.getEncryptedVerifierCode(iOSCodeVerifier!))\(thirdPath)\(WEB_AUTH_BASE_URL_FOURTH)"
         
@@ -317,12 +317,12 @@ public class SSOController: UIViewController, SFSafariViewControllerDelegate {
     }
     
     
-    public func logLicenseInfo(deviceId: String, licenseType: String, licenseNo: String, completion: @escaping (Bool, NSDictionary) -> Void) {
+    public func logLicenseInfo(licenseObj: AnyObject, completion: @escaping (Bool, NSDictionary) -> Void) {
         
         if CurrentUser.sharedInstance.isLoggedIn! {
             
             //:- Call License-Log info API
-            BushnellAPI.sharedInstance.logLicenseApi(deviceId, licenseType, licenseNo) { (success, response) -> Void in
+            BushnellAPI.sharedInstance.logLicenseApi(licenseObj: licenseObj) { (success, response) -> Void in
                 completion(success,  response!)
             }
             

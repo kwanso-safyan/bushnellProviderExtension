@@ -15,12 +15,12 @@ class Configuration: NSObject {
     var iOSClientSecret: String? = ""
     var iOSCodeVerifier: String? = ""
     var iOSRedirectUrl: String = ""
-    var scopeEditProfile: String = ""
-    var scopeLicense: String = ""
+    var scopeEditProfile: Bool = false
+    var scopeLicense: Bool = false
     
     
     //:- For configurations
-    init(ssoBaseUrl: String, iOSClientId: String, iOSClientSecret: String, bushnellBaseUrl: String, iOSRedirectUrl: String, scopeEditProfile: String, scopeLicense: String) {
+    init(ssoBaseUrl: String, iOSClientId: String, iOSClientSecret: String, bushnellBaseUrl: String, iOSRedirectUrl: String, scopeEditProfile: Bool, scopeLicense: Bool) {
         
         self.ssoBaseUrl = ssoBaseUrl
         self.bushnellBaseUrl = bushnellBaseUrl

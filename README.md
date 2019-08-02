@@ -82,7 +82,9 @@ ssoSDK.setupConfiguration(
     iOSClientId: "CLIENT_ID",
     iOSClientSecret: "CLIENT_SECRET",
     bushnellBaseUrl: "RESOURCE_SERVER_BASE_URL",
-    iOSRedirectUrl: "com.ios.bushnellsso://" --EXAMPLE APP URL--
+    iOSRedirectUrl: "com.ios.bushnellsso://", --EXAMPLE APP URL--
+    scopeEditProfile: "profile:edit",
+    scopeLicense: "license"
 )
 
 ```
