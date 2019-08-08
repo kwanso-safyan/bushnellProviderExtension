@@ -83,16 +83,18 @@ public class SSOController: UIViewController, SFSafariViewControllerDelegate {
         let baseURL = CurrentUser.sharedInstance.configSSO?.ssoBaseUrl
         let iOSClientId = CurrentUser.sharedInstance.configSSO?.iOSClientId
         let iOSCodeVerifier = CurrentUser.sharedInstance.configSSO?.iOSCodeVerifier
-        
         let scopeEditProfile = CurrentUser.sharedInstance.configSSO?.scopeEditProfile
         let scopeLicense = CurrentUser.sharedInstance.configSSO?.scopeLicense
+        
+        let codeVerifier = self.getEncryptedVerifierCode(iOSCodeVerifier!)
         
         var thirdPath = scopeEditProfile == true ? "\(WEB_AUTH_BASE_URL_THIRD)+profile:edit" : WEB_AUTH_BASE_URL_THIRD
         thirdPath = scopeLicense == true ? "\(thirdPath)+license" : thirdPath
         
-        let urlPath = "\(baseURL ?? "SSO_BASE_URL")\(WEB_AUTH_BASE_URL_ONE)\(iOSClientId ?? "IOS_CLIENT_ID")\(WEB_AUTH_BASE_URL_SECOND)\(self.getEncryptedVerifierCode(iOSCodeVerifier!))\(thirdPath)\(WEB_AUTH_BASE_URL_FOURTH)"
+        let urlPath = "\(baseURL ?? DEFAULT_SSO_URL)\(WEB_AUTH_BASE_URL_ONE)\(iOSClientId ?? DEFAULT_BUSHNELL_URL)\(WEB_AUTH_BASE_URL_SECOND)\(codeVerifier)\(thirdPath)\(WEB_AUTH_BASE_URL_FOURTH)"
         
-        print(urlPath)
+        //print(urlPath)
+        
         guard let url = URL(string: urlPath) else { return }
         
         let safariVC = SFSafariViewController(url: url)
@@ -342,7 +344,7 @@ public class SSOController: UIViewController, SFSafariViewControllerDelegate {
         let hash = Data(bytes: buffer)
         let encryptedVerifier = hash.base64EncodedString()
             .replacingOccurrences(of: "+", with: "-")
-            .replacingOccurrences(of: "/", with: "\\_")
+            .replacingOccurrences(of: "/", with: "_")
             .replacingOccurrences(of: "=", with: "")
             .trimmingCharacters(in: .whitespaces)
         

@@ -37,3 +37,6 @@ let WEB_AUTH_BASE_URL_SECOND = "&response_type=code&prompt=consent&code_challeng
 let WEB_AUTH_BASE_URL_THIRD = "&scope=openid+profile+offline_access" // "+profile:edit"
 let WEB_AUTH_BASE_URL_FOURTH = "&code_challenge_method=S256"
 let ID_TOKEN_HINT = "&id_token_hint="
+
+let DEFAULT_SSO_URL = "https://bushnell-sso-stage.arsplatform.com/"
+let DEFAULT_BUSHNELL_URL = "https://bushnell-sso-resource-server-stage.arsplatform.com/"
